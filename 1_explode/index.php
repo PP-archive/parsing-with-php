@@ -12,9 +12,18 @@ $eventHeaders = [];
 foreach($events as $event) {
     
     $tmp = explode("<h2>", $event);
-    
+
     // some notice appears during the iterations, I don't like it
-    $eventsHeaders[] = @strip_tags($tmp[1]);
+    $spanStart = @strpos($tmp[1], "<span>");
+    
+    if($spanStart) {
+        $header = @substr($tmp[1], 0, $spanStart);
+    } else {
+        //I don't like the notice here as well
+        $header = @$tmp[1];
+    }
+    
+    $eventsHeaders[] = strip_tags($header);
 }
 
 // the last element is empty, I don't need it

@@ -37,7 +37,9 @@ class ThinkPHPHttpClient {
      */
     protected function _tidyFix($content) {
         $tidy = new Tidy();
-        $tidy->parseString($content, ['wrap'=>0], 'utf8');
+        $tidy->parseString($content, ['input-xml' => true,
+    'output-xml' => true,
+    'wrap' => false], 'utf8');
         $tidy->cleanRepair();
 
         $content = (string) $tidy;
@@ -63,7 +65,9 @@ $eventsHeaders = [];
 // iterating over the h2 tags
 foreach(pq('h2') as $title) {
     
-    $eventsHeaders[] = (string) pq($title)->text();
+    pq($title)->find('span')->remove();
+    
+    $eventsHeaders[] = trim(pq($title)->text());
 }
 
 $finish = microtime(true);

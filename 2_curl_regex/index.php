@@ -8,10 +8,14 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $content = curl_exec($ch);
 
+// get all the content between the h2 tags
 preg_match_all("/<h2>(.*?)<\/h2>/si", $content, $matches);
 
 $eventsHeaders = [];
+// iterating throught the content
 foreach($matches[1] as $match) {
+    // removing the date, if it's present
+    $match = preg_replace('/<span>(.*?)<\/span>/si', '', $match);
     $eventsHeaders[] = strip_tags($match);
 }
 
