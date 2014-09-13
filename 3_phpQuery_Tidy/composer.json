@@ -1,0 +1,5 @@
+{
+    "require": {
+        "electrolinux/phpquery": "dev-master"
+    }
+}
