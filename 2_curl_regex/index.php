@@ -13,10 +13,20 @@ preg_match_all("/<h2>(.*?)<\/h2>/si", $content, $matches);
 
 $eventsHeaders = [];
 // iterating throught the content
-foreach($matches[1] as $match) {
+foreach ($matches[1] as $match) {
     // removing the date, if it's present
     $match = preg_replace('/<span>(.*?)<\/span>/si', '', $match);
-    $eventsHeaders[] = strip_tags($match);
+
+    // trying to find the href
+    preg_match('/href="(.*?)"/si', $match, $hrefMatches);
+
+    // if href is there, let's assign it
+    $link = isset($hrefMatches[1]) ? $hrefMatches[1] : null;
+
+    $eventsHeaders[] = [
+        'title' => strip_tags($match),
+        'link' => $link
+    ];
 }
 
 $finish = microtime(true);
@@ -24,5 +34,5 @@ $finish = microtime(true);
 header('Content-Type: text/plain; charset=utf-8');
 var_dump($eventsHeaders);
 
-echo "\n\nIt took: ".round($finish - $start, 4)." seconds";
+echo "\n\nIt took: " . round($finish - $start, 4) . " seconds";
 

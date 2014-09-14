@@ -1,5 +1,4 @@
 <?php
-
 $start = microtime(true);
 
 $ch = curl_init();
@@ -29,8 +28,18 @@ $eventsHeaders = [];
 foreach ($xml->xpath('//xmlns:h2') as $node) {
     // remove if present
     unset($node->span);
-    
-    $eventsHeaders[] = trim(strip_tags($node->asXml()));
+
+    // if the href is there, let's parse it
+    if (isset($node->a['href'])) {
+        $link = (string) $node->a['href'];
+    } else {
+        $link = null;
+    }
+
+    $eventsHeaders[] = [
+        'title' => trim(strip_tags($node->asXml())),
+        'link' => $link
+    ];
 }
 
 $finish = microtime(true);

@@ -1,4 +1,7 @@
-_angigate_key
+.DS_Store
+_antigate_key
 antigate.js
 beeline.js
 mx-nss.js
+*.png
+*.html
