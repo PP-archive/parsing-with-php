@@ -57,7 +57,7 @@ page.open('http://search.irc.gov.ua/edr.html', function() {
                         dfd.reject();
                     }
                 }, 3000);
-                return dfd;
+                return dfd.promise();
             })().then(/*success*/ function() {
                 var captchaObj = page.evaluate(function() {
                     function getImgDimensions($i) {
@@ -115,7 +115,7 @@ page.open('http://search.irc.gov.ua/edr.html', function() {
                             }
                         }, 5000);
 
-                        return dfd;
+                        return dfd.promise();
                     })().then(/* success */ function() {
                         var result = page.evaluate(function() {
                             var result = [];
