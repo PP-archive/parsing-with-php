@@ -12,3 +12,4 @@ An example of the execution from the command line:
 ~~~
 phantomjs irc-gov-ua.js '{"name":"Тимошенко Юлія Володимирівна"}'
 ~~~
+![command line example](http://imgur.com/NWf0JWp.png)
