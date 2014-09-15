@@ -31,13 +31,13 @@ page.open('http://search.irc.gov.ua/edr.html', function() {
         // making the form visible and filling it
         page.evaluate(function(input) {
             $("#agreeCheckSearch").trigger('click');
-            $("#searchform").children("table").css("visibility", "visible"); //show();
+            $("#searchform").children("table").css("visibility", "visible");
             $('#agreeCheckSearch').attr("checked", true);
             $('input[name=query]').val(input.name);
             $('#searchform').submit();
         }, input);
 
-        // workaround, 
+        // workaround, for the known bug https://github.com/ariya/phantomjs/issues/10832
         setTimeout(function() {
 
             (function() {
@@ -135,7 +135,9 @@ page.open('http://search.irc.gov.ua/edr.html', function() {
                         page.render('result.png');
 
                         var endTime = (new Date).getTime();
-                        console.log(JSON.stringify({'status': 'success', 'result': result, 'executionTime': ((endTime - startTime) / 1000)}));
+                        console.log(JSON.stringify({'status': 'success',
+                                                    'result': result,
+                                                    'executionTime': ((endTime - startTime) / 1000)}));
 
                         phantom.exit();
                     },

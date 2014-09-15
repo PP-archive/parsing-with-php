@@ -8,7 +8,7 @@ require 'vendor/autoload.php';
 class ThinkPHPHttpClient {
 
     protected $_baseUrl = 'http://thinkphp.com.ua/';
-    protected $_userAgent = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36';
+    protected $_userAgent = 'Googlebot/2.1 (+http://www.google.com/bot.html)';
 
     /**
      * receive the index page of the thinkPHP website

@@ -3,8 +3,8 @@ $start = microtime(true);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'http://thinkphp.com.ua/');
-// we want to pretend the Chrome
-curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36');
+// we want to pretend the Googlebot
+curl_setopt($ch, CURLOPT_USERAGENT, 'Googlebot/2.1 (+http://www.google.com/bot.html)');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $content = curl_exec($ch);

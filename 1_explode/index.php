@@ -1,4 +1,5 @@
 <?php
+
 $start = microtime(true);
 
 // get the website content
@@ -26,7 +27,9 @@ foreach ($events as $event) {
 
     // searching for the href
     if (strpos($header, 'href')) {
-        $link = substr($header, strpos($header, 'href="') + 6 /* length of the href=" */, strpos($header, '">') - 9 /* length of the <a href=" */);
+        $link = substr($header,
+                       strpos($header, 'href="') + 6 /* length of the href=" */,
+                       strpos($header, '">') - 9 /* length of the <a href=" */);
     } else {
         $link = null;
     }
